@@ -1,5 +1,7 @@
 # mydlink kamera (DCS-P6000LH) – protokol lokálního živého náhledu
 
+*English version: [PROTOCOL_EN.md](PROTOCOL_EN.md)*
+
 Popis kompletní komunikace potřebné k získání živého videa z kamery v LAN,
 tak jak ji implementují `rtsp_proxy.py`, `sa_srtp.py` a `advanced_proxy.py`.
 Zdroje: dekompilovaná appka mydlink (Java), disassembly `libsa.so`, Frida
@@ -172,6 +174,9 @@ GET /oauth/authorize2?client_id=mydlinkuapandroid
 - `OAUTH_SECRET = 5259311fa8cab90f09f2dc1e09d2d8ee` (z appky),
 - `sig` se počítá z řetězce `/oauth/authorize2?...` (bez hostu, bez `&sig`),
 - odpověď je redirect 3xx, `Location: https://mydlink.com?...access_token=<token>...`.
+
+Neplatný nebo vypršelý token API odmítne s
+`HTTP 400 {"error":{"code":14,"message":"Invalid access token."}}`.
 
 ### 2.2 Seznam zařízení
 
